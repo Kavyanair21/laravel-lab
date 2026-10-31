@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PageController;
+use App\Http\Controllers\StudentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +22,10 @@ Route::get('/', function () {
 });
 
 // Lessons 2-6: you will add your routes below this line.
+Route::get('/hello/{your_name}', [PageController::class, 'hello']);
+
+Route::get('/about', [PageController::class, 'about']);
+Route::resource('students', StudentController::class);
+Route::get('/roll/{your_roll}', function ($student) {
+    return view('students.show', ['student' => $student]);
+});

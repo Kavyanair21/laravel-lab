@@ -20,7 +20,9 @@ class DatabaseSeeder extends Seeder
             ['CS23-04', 'Arjun Das',      6.80],
             ['CS23-05', 'Meera Nair',     8.05],
             ['CS23-06', 'Joel Thomas',    7.40],
-        ];
+        
+            ['39', 'Kavya S Nair', 8.41],
+         ];
 
         foreach ($rows as [$roll, $name, $cgpa]) {
             Student::create([
