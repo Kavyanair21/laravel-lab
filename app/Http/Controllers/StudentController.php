@@ -33,21 +33,21 @@ class StudentController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
-         $validated = $request->validate([
-            'roll_no' => 'required|unique:students,roll_no',
-            'name' => 'required',
-            'email' => 'required|email|unique:students,email',
-            'department' => 'required',
-            'semester' => 'required|integer',
-            'cgpa' => 'required|numeric|min:0|max:10',
-        ]);
+{
+    $validated = $request->validate([
+        'roll_no' => 'required',
+        'name' => 'required',
+        'email' => 'required|email',
+        'department' => 'required',
+        'semester' => 'required|integer',
+        'cgpa' => 'required|numeric|min:0|max:10',
+    ]);
 
-        Student::create($validated);
+    Student::create($validated);
 
-        return redirect()->route('students.index')
-            ->with('status', 'Student added successfully!');
-    }
+    return redirect('/students')
+        ->with('status', 'Student added successfully!');
+}
 
     /**
      * Display the specified resource.
