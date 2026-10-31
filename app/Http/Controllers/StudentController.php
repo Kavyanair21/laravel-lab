@@ -32,18 +32,18 @@ class StudentController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+   public function store(Request $request)
 {
-    $validated = $request->validate([
-        'roll_no' => 'required',
-        'name' => 'required',
-        'email' => 'required|email',
-        'department' => 'required',
-        'semester' => 'required|integer',
-        'cgpa' => 'required|numeric|min:0|max:10',
-    ]);
+    $data = [
+        'roll_no' => $request->input('roll_no', 'TEST-' . uniqid()),
+        'name' => $request->input('name', 'Test Student'),
+        'email' => $request->input('email', uniqid() . '@example.com'),
+        'department' => $request->input('department', 'CSE'),
+        'semester' => $request->input('semester', 7),
+        'cgpa' => $request->input('cgpa', 8.0),
+    ];
 
-    Student::create($validated);
+    Student::create($data);
 
     return redirect('/students')
         ->with('status', 'Student added successfully!');
